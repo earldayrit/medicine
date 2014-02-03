@@ -9,7 +9,6 @@ import dao.JongoModel;
 
 public class Employee implements JongoModel {
 	
-	private final String collectionName = "Employee";
 	
 	@JsonProperty("_id")
 	private ObjectId id;	
@@ -67,7 +66,7 @@ public class Employee implements JongoModel {
 
 	@Override
 	public String getCollectionName() {
-		return "collectionName";
+		return "Employee";
 	}
 	
 }

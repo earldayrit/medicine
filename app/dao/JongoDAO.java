@@ -1,5 +1,6 @@
 package dao;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -14,8 +15,18 @@ public class JongoDAO<T extends JongoModel> implements JongoCRUD<T> {
 	MongoCollection collections = null;
 	Class<T> clazz = null;
 	
-	public JongoDAO(Class<T> clazz){
-		collections = PlayJongo.getCollection(clazz.getSimpleName());
+	public JongoDAO(Class<T> clazz) {
+		Method method = null;
+		String collection = null;
+		
+		try {
+			method = clazz.getMethod("getCollectionName");		
+			collection = method.invoke(clazz.newInstance()).toString();		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			
+		collections = PlayJongo.getCollection(collection);
 		this.clazz = clazz;
 	}
 	

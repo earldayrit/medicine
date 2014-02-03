@@ -3,18 +3,11 @@ package models;
 import java.util.List;
 
 import org.bson.types.ObjectId;
-import org.jongo.MongoCollection;
-
-import uk.co.panaxiom.playjongo.PlayJongo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Logs {
-	
-	public static MongoCollection collections() {
-		return PlayJongo.getCollection("Logs");
-	}
-	
+		
 	@JsonProperty("_id")
 	private ObjectId objectId;
 	@JsonProperty("employee")
